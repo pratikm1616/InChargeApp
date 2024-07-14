@@ -1,0 +1,68 @@
+{
+  "project_info": {
+    "project_number": "742264318248",
+    "project_id": "incharge2point0",
+    "storage_bucket": "incharge2point0.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:742264318248:android:c88fb4f9e8115be830481d",
+        "android_client_info": {
+          "package_name": "com.Incharge.login"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "742264318248-a8f89td8uvdga5t5cs2cl3utnm0nresh.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDVp0Mm-OXB6H5H_3UZl0_HRjOmO9DUMXo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "742264318248-a8f89td8uvdga5t5cs2cl3utnm0nresh.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:742264318248:android:9c9ba4e599344b7530481d",
+        "android_client_info": {
+          "package_name": "com.Inchargenext.loginactivity"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "742264318248-a8f89td8uvdga5t5cs2cl3utnm0nresh.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDVp0Mm-OXB6H5H_3UZl0_HRjOmO9DUMXo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "742264318248-a8f89td8uvdga5t5cs2cl3utnm0nresh.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

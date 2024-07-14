@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.Inchargenext.loginactivity">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.CAMERA" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/iconev"
+        android:label="INCharge"
+        android:roundIcon="@drawable/iconev"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.LoginActivity">
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyCZHqO8Iv1MRGHuwwQIKM8wHw4IegwCaOE" />
+
+        <activity
+            android:name=".updateprofile"
+            android:exported="false" />
+        <activity
+            android:name=".Create_Profile"
+            android:exported="false" />
+        <activity
+            android:name=".EditProfile1"
+            android:exported="false" />
+        <activity
+            android:name=".Yakuza"
+            android:exported="false" />
+        <activity
+            android:name=".Hero"
+            android:exported="false" />
+        <activity
+            android:name=".TVS"
+            android:exported="false" />
+        <activity
+            android:name=".Bajaj"
+            android:exported="false" />
+        <activity
+            android:name=".Arther"
+            android:exported="false" />
+        <activity
+            android:name=".Mgcars"
+            android:exported="false" />
+        <activity
+            android:name=".Mercedescar"
+            android:exported="false" />
+        <activity
+            android:name=".Mahindracars"
+            android:exported="false" />
+        <activity
+            android:name=".Jaguarcar"
+            android:exported="false" />
+        <activity
+            android:name=".Hyundaicars"
+            android:exported="false" />
+        <activity
+            android:name=".tatamotorscars"
+            android:exported="false" />
+        <activity
+            android:name=".EcarMapsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ForgetPassword"
+            android:exported="false" />
+        <activity
+            android:name=".oldsplashscreen"
+            android:exported="false" />
+        <activity
+            android:name=".SplashScreen"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".Dashboard"
+            android:exported="false" />
+        <activity
+            android:name=".Signup"
+            android:exported="false" />
+        <activity
+            android:name=".Login"
+            android:exported="false" />
+        <activity
+            android:name=".MapsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".EbikeMapsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".SelectEvActivity"
+            android:exported="false" />
+        <activity
+            android:name=".CngMapsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".SelectFuelActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ShowPlaces"
+            android:exported="false" />
+
+    </application>
+
+</manifest>

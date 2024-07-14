@@ -1,0 +1,195 @@
+package com.Inchargenext.loginactivity;
+
+import android.annotation.SuppressLint;
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.content.DialogInterface;
+import android.os.Build;
+import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
+import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
+import com.firebase.ui.firestore.FirestoreRecyclerOptions;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
+
+//import androidmads.library.qrgenearator.QRGContents;
+//import androidmads.library.qrgenearator.QRGEncoder;
+public class Bookings extends Fragment {
+    Dialog dialog;
+    Button cancelBtn;
+    private BookingsViewModel mViewModel;
+    private FirebaseFirestore firebaseFirestore;
+    private FirestoreRecyclerAdapter adapter;
+    private RecyclerView bookinglist;
+    private ImageView qrimg;
+
+    public static Bookings newInstance() {
+        return new Bookings();
+    }
+
+    @Override
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
+                             @Nullable Bundle savedInstanceState) {
+
+        View fragment = inflater.inflate(R.layout.bookings_fragment, container, false);
+
+        dialog = new Dialog(getContext());
+        dialog.setContentView(R.layout.qr_dialog);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            dialog.getWindow().setBackgroundDrawable(ContextCompat.getDrawable(getActivity(), R.drawable.dialog_background));
+        }
+        dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        dialog.setCancelable(false);
+        dialog.getWindow().getAttributes().windowAnimations = R.style.animation;
+
+        qrimg = dialog.findViewById(R.id.qrCode);
+        cancelBtn = dialog.findViewById(R.id.cancelQR);
+
+        cancelBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+
+        firebaseFirestore = FirebaseFirestore.getInstance();
+        bookinglist = fragment.findViewById(R.id.bookinglist);
+
+        Query query = firebaseFirestore.collection("BookingDetails").
+                whereEqualTo("UserId", FirebaseAuth.getInstance().getCurrentUser().getUid());
+
+        FirestoreRecyclerOptions<BookingModel> option = new FirestoreRecyclerOptions.Builder<BookingModel>()
+                .setQuery(query, BookingModel.class)
+                .build();
+
+        adapter = new FirestoreRecyclerAdapter<BookingModel, BookingViewHolder>(option) {
+
+            @NonNull
+            @Override
+            public BookingViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+                View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.show_bookings,
+                        parent, false);
+                return new BookingViewHolder(view);
+            }
+
+            @Override
+            protected void onBindViewHolder(@NonNull BookingViewHolder holder, @SuppressLint("RecyclerView") final int position, @NonNull BookingModel model) {
+                holder.booking_place.setText(model.getPlace_name());
+                holder.booking_address.setText(model.getAddress());
+                holder.booking_timing.setText(model.getTiming().toString());
+/*                holder.itemView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        dialog.show();
+                        String data = getSnapshots().getSnapshot(position).getId();
+                        QRGEncoder qrgEncoder = new QRGEncoder(data,null, QRGContents.Type.TEXT,500);
+                        Bitmap qrBits = qrgEncoder.getBitmap();
+                        qrimg.setImageBitmap(qrBits);
+                    }
+                });*/
+
+                holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
+                    @Override
+                    public boolean onLongClick(View v) {
+                        Query query = firebaseFirestore.collection("BookingDetails").
+                                whereEqualTo("UserId", FirebaseAuth.getInstance().getCurrentUser().getUid());
+                        AlertDialog.Builder builder1 = new AlertDialog.Builder(getContext());
+                        builder1.setMessage("Do you want to cancel your booking ?");
+                        builder1.setCancelable(true);
+
+                        builder1.setPositiveButton(
+                                "Yes",
+                                new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int id) {
+                                        String data = getSnapshots().getSnapshot(position).getId();
+                                        firebaseFirestore.collection("BookingDetails").document(data)
+                                                .delete()
+                                                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                                    @Override
+                                                    public void onSuccess(Void aVoid) {
+                                                        Toast.makeText(getContext(), "Booking Cancelled", Toast.LENGTH_SHORT).show();
+                                                    }
+                                                })
+                                                .addOnFailureListener(new OnFailureListener() {
+                                                    @Override
+                                                    public void onFailure(@NonNull Exception e) {
+                                                        Toast.makeText(getContext(), "Unable to cancel", Toast.LENGTH_SHORT).show();
+                                                    }
+                                                });
+                                        dialog.cancel();
+                                    }
+                                });
+
+                        builder1.setNegativeButton(
+                                "No",
+                                new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int id) {
+                                        dialog.cancel();
+                                    }
+                                });
+
+                        AlertDialog alert11 = builder1.create();
+                        alert11.show();
+                        return false;
+                    }
+                });
+            }
+        };
+
+        bookinglist.setHasFixedSize(true);
+        bookinglist.setLayoutManager(new LinearLayoutManager(getContext()));
+        bookinglist.setAdapter(adapter);
+
+        return fragment;
+    }
+
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        mViewModel = new ViewModelProvider(this).get(BookingsViewModel.class);
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        adapter.stopListening();
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        adapter.startListening();
+    }
+
+    private class BookingViewHolder extends RecyclerView.ViewHolder {
+
+        private final TextView booking_place;
+        private final TextView booking_address;
+        private final TextView booking_timing;
+
+        public BookingViewHolder(@NonNull View itemView) {
+            super(itemView);
+            booking_place = itemView.findViewById(R.id.booking_place);
+            booking_address = itemView.findViewById(R.id.booking_add);
+            booking_timing = itemView.findViewById(R.id.booking_time);
+        }
+    }
+}

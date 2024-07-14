@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical"
+    tools:context=".EditProfile1">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginBottom="5dp"
+        app:cardBackgroundColor="@color/white">
+
+        <ImageButton
+            android:id="@+id/backbtndash"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left|center_vertical"
+            android:layout_margin="10dp"
+            android:background="@android:color/transparent"
+            android:src="@drawable/back_to_home_button" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:paddingTop="8dp"
+            android:text="MY PROFILE"
+            android:textColor="@color/Theme"
+            android:textSize="25dp"
+            android:textStyle="bold" />
+
+        <ImageButton
+            android:id="@+id/editpage2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right|center_vertical"
+            android:layout_margin="10dp"
+            android:background="@android:color/transparent"
+            android:src="@drawable/ic_baseline_edit_24" />
+    </androidx.cardview.widget.CardView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="110dp"
+        android:layout_marginBottom="10dp"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal">
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_gravity="center_vertical"
+            android:elevation="8dp"
+            app:cardCornerRadius="50dp"
+            app:cardElevation="10dp"
+            app:cardPreventCornerOverlap="false">
+
+            <ImageView
+                android:id="@+id/imageView_EP"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/profile1"
+                android:clickable="true"
+                android:scaleType="fitCenter"
+                app:civ_border_color="@color/black"
+                app:civ_border_width="2dp"
+                android:contentDescription="ProfilePicture">
+            </ImageView>
+
+        </androidx.cardview.widget.CardView>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/textview_name"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="2dp"
+                android:gravity="start"
+                android:hint="Name"
+                android:paddingStart="10dp"
+                android:paddingLeft="10dp"
+                android:textAlignment="viewStart"
+                android:textColor="@color/black"
+                android:textSize="25sp" />
+
+            <TextView
+                android:id="@+id/textview_username"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="2dp"
+                android:gravity="start"
+                android:hint="Username"
+                android:paddingStart="10dp"
+                android:paddingLeft="10dp"
+                android:textAlignment="viewStart"
+                android:textColor="@color/grey"
+                android:textSize="15sp" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:background="@drawable/custom_background_input"
+        android:gravity="center"
+        android:padding="5dp"
+        android:text="Primary Details"
+        android:textAllCaps="true"
+        android:textColor="@color/black"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/emailinprofileed1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="15dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
+        android:background="@drawable/custom_background_input"
+        android:drawablePadding="20dp"
+        android:padding="5dp"
+        android:paddingStart="20dp"
+        android:text="Email Id"
+        android:textColor="@color/black"
+        android:textSize="15sp"
+        android:textStyle="bold">
+    </TextView>
+
+    <TextView
+        android:id="@+id/textview_email"
+        android:layout_width="411dp"
+        android:layout_height="40dp"
+        android:layout_margin="4dp"
+        android:clickable="true"
+        android:paddingStart="20dp"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        android:text="Email"
+        android:textColor="@color/black"
+        android:textSize="20dp"
+        tools:ignore="OnClick">
+    </TextView>
+
+    <TextView
+        android:id="@+id/phoneinprofileed1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="15dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
+        android:background="@drawable/custom_background_input"
+        android:drawablePadding="20dp"
+        android:padding="5dp"
+        android:paddingStart="20dp"
+        android:text="Contact Number"
+        android:textSize="15sp"
+        android:textStyle="bold">
+    </TextView>
+
+    <TextView
+        android:id="@+id/textView_contact"
+        android:layout_width="match_parent"
+        android:layout_height="33dp"
+        android:layout_margin="4dp"
+        android:clickable="true"
+        android:paddingStart="20dp"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        android:text="Contact number"
+        android:textColor="@color/black"
+        android:textSize="20dp"
+        tools:ignore="OnClick">
+    </TextView>
+
+    <TextView
+        android:id="@+id/address_f1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="15dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
+        android:background="@drawable/custom_background_input"
+        android:drawablePadding="20dp"
+        android:padding="5dp"
+        android:paddingStart="20dp"
+        android:text="Address"
+        android:textColor="@color/black"
+        android:textSize="15sp"
+        android:textStyle="bold">
+    </TextView>
+
+    <TextView
+        android:id="@+id/textview_address"
+        android:layout_width="match_parent"
+        android:layout_height="49dp"
+        android:layout_margin="4dp"
+        android:clickable="true"
+        android:paddingStart="20dp"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        android:text="Address"
+        android:textColor="@color/black"
+        android:textSize="20dp"
+        tools:ignore="OnClick">
+    </TextView>
+
+    <!-- <TextView
+         android:id="@+id/carinfoed1"
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+         android:background="@drawable/custom_background_input"
+         android:layout_margin="15dp"
+         android:layout_marginStart="20dp"
+         android:layout_marginLeft="20dp"
+         android:padding="5dp"
+         android:textColor="@color/black"
+ android:textStyle="bold"
+         android:text="Vehicle Information"
+         android:drawablePadding="20dp"
+         android:paddingStart="20dp"
+         android:textSize="15sp">
+
+     </TextView>
+     <TextView
+         android:id="@+id/et_vehicleinfo_f1"
+         android:layout_width="match_parent"
+         android:layout_height="33dp"
+         android:layout_margin="4dp"
+         android:clickable="true"
+         android:paddingTop="5dp"
+         android:paddingStart="20dp"
+         android:paddingBottom="5dp"
+         android:text="Vehicle Information"
+         android:textColor="@color/black"
+         android:textSize="20dp"
+         tools:ignore="OnClick">
+
+     </TextView>-->
+</LinearLayout>
